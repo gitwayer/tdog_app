@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * 登录界面
  */
-public class LoginActivity extends BaseActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity{
 
     private EditText etUserName;
     private EditText etPassword;
@@ -43,7 +43,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         TextView tvTitle = (TextView) this.findViewById(R.id.tv_title);
         tvTitle.setText("登录注册");
         RelativeLayout rlBack = (RelativeLayout) this.findViewById(R.id.rl_back);
-        rlBack.setOnClickListener(this);
+        rlBack.setVisibility(View.GONE);
         etUserName = (EditText) this.findViewById(R.id.et_user);
         etPassword = (EditText) this.findViewById(R.id.et_password);
         btnLogin = (Button) this.findViewById(R.id.btn_login);
@@ -54,6 +54,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         tvRestPassword.setOnClickListener(this);
         rlBackground = (RelativeLayout)this.findViewById(R.id.rl_background);
         pbView = (ProgressBar)this.findViewById(R.id.pb_view);
+
     }
 
     @Override
@@ -63,7 +64,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 Login(v);
                 break;
             case R.id.tv_register:
-                register();
+                jumpToRegister();
                 break;
             case R.id.tv_reset_password:
                 reset();
@@ -136,9 +137,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     /**
-     * 注册
+     * 跳转到注册
      */
-    private void register() {
+    private void jumpToRegister() {
+        Intent intent = new Intent(this,RegisterActivity.class);
+        startActivity(intent);
     }
 
     /**

@@ -6,20 +6,20 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 
+import com.tdog.library.InjectManager;
 import com.tdog.tdog_app.util.CustomProgressDialog;
 
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends Activity implements View.OnClickListener {
     private Dialog mDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        InjectManager.inject(this);
         initView();
     }
 
     protected abstract void initView();
-
-
 
     public void showSnackBar(View view, String str, Snackbar.Callback callback) {
         Snackbar.make(view,str,Snackbar.LENGTH_SHORT).show();
