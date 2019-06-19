@@ -2,7 +2,6 @@ package com.tdog.tdog_app.activity.login;
 
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +15,7 @@ import com.tdog.tdog_app.activity.main.MainActivity;
 import com.tdog.tdog_app.base.BaseActivity;
 import com.tdog.tdog_app.net.HttpCallBack;
 import com.tdog.tdog_app.net.HttpHelper;
+import com.tdog.tdog_app.util.Utils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +34,7 @@ public class LoginActivity extends BaseActivity{
     private ProgressBar pbView;
     private static final String SEP = ",";
 
-    private static final String NOUSER = "用户名不能为空";
+    private static final String NOUSER = "手机号不能为空";
     private static final String NOPASSWORD = "密码不能为空";//
 
     @Override
@@ -151,5 +151,9 @@ public class LoginActivity extends BaseActivity{
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+       // super.onBackPressed();
+        Utils.exit(this);
+    }
 }

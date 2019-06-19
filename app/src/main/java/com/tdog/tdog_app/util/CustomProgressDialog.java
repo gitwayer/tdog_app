@@ -40,7 +40,4 @@ public class CustomProgressDialog {
 
     }
 
-//    public void show(Context context){
-//
-//    }
 }

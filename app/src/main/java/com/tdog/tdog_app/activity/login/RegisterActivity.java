@@ -1,6 +1,7 @@
 package com.tdog.tdog_app.activity.login;
 
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,14 +13,21 @@ import com.tdog.library.annotation.ContentView;
 import com.tdog.library.annotation.InjectView;
 import com.tdog.library.annotation.OnClick;
 import com.tdog.tdog_app.R;
-import com.tdog.tdog_app.activity.main.MainActivity;
 import com.tdog.tdog_app.activity.map.MapActivity;
 import com.tdog.tdog_app.base.BaseActivity;
+import com.tdog.tdog_app.util.Utils;
 
 import java.lang.annotation.Retention;
 
 @ContentView(R.layout.activity_register)
 public class RegisterActivity extends BaseActivity {
+
+    private static final String NOUSER = "手机号不能为空";
+    private static final String NOPASSWORD = "密码不能为空";
+    private static final String NOCOMPANYNAME = "单位名称不能为空";
+    private static final String NOCOMPANYADDRESS = "单位地址不能为空";
+    private static final String NOPRINCIPALNAME = "负责人姓名不能为空";
+    private static final String NOVERIFYCODE = "验证码不能为空";
 
     @InjectView(R.id.rl_back)
     private RelativeLayout rlBack;
@@ -56,7 +64,35 @@ public class RegisterActivity extends BaseActivity {
 
     @OnClick(R.id.btn_register)
     public void register(View view){
+        checkParams();
         Toast.makeText(this,"register",Toast.LENGTH_SHORT).show();
+    }
+
+    private void checkParams() {
+        if(Utils.isEmpty(etUser.getText().toString().trim())){
+            Snackbar.make(etUser,NOUSER,Snackbar.LENGTH_SHORT).show();
+            return;
+        }
+        if(Utils.isEmpty(etPassword.getText().toString().trim())){
+            Snackbar.make(etPassword,NOPASSWORD,Snackbar.LENGTH_SHORT).show();
+            return;
+        }
+        if(Utils.isEmpty(etCompanyName.getText().toString().trim())){
+            Snackbar.make(etCompanyName,NOCOMPANYNAME,Snackbar.LENGTH_SHORT).show();
+            return;
+        }
+        if(Utils.isEmpty(etCompanyAddress.getText().toString().trim())){
+            Snackbar.make(etCompanyAddress,NOCOMPANYADDRESS,Snackbar.LENGTH_SHORT).show();
+            return;
+        }
+        if(Utils.isEmpty(etPrincipalName.getText().toString().trim())){
+            Snackbar.make(etPrincipalName,NOPRINCIPALNAME,Snackbar.LENGTH_SHORT).show();
+            return;
+        }
+        if(Utils.isEmpty(etVerifyCode.getText().toString().trim())){
+            Snackbar.make(etPrincipalName,NOVERIFYCODE,Snackbar.LENGTH_SHORT).show();
+            return;
+        }
     }
 
     @OnClick(R.id.img_pos)
@@ -72,5 +108,10 @@ public class RegisterActivity extends BaseActivity {
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
