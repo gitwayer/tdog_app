@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 public class Utils {
+    public static final String SEP = ",";
 
     public static void exit(Context context) {
         MyAlertDialog alertDialog = new MyAlertDialog(context);

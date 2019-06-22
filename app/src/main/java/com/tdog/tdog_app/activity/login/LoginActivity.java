@@ -32,7 +32,6 @@ public class LoginActivity extends BaseActivity{
     private TextView tvRestPassword;
     private RelativeLayout rlBackground;
     private ProgressBar pbView;
-    private static final String SEP = ",";
 
     private static final String NOUSER = "手机号不能为空";
     private static final String NOPASSWORD = "密码不能为空";//
@@ -90,7 +89,7 @@ public class LoginActivity extends BaseActivity{
      */
     private void requestHttpLogin() {
         String url = "http://182.92.200.237:8000/AppServer/getDeviceDao";
-        String param ="'"+etUserName.getText().toString()+"'"+SEP+"'"+etPassword.getText().toString()+"'";
+        String param ="'"+etUserName.getText().toString()+"'"+Utils.SEP+"'"+etPassword.getText().toString()+"'";
         Map<String,Object> map = new HashMap<>();
         map.put("action","login");
         map.put("type","1");
